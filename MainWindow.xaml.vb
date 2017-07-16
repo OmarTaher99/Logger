@@ -14,31 +14,25 @@
     End Sub
 
     Private Sub button1_Click(sender As Object, e As RoutedEventArgs) Handles btn_Info.Click
-        'If tb_MSG.Text = "" Or tb_Path.Text = "" Then
-        '    MsgBox("Enter All Values.")
-        'Else
-        '    My.Computer.FileSystem.WriteAllText(tb_Path.Text, "[" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "]." + "[Info]:" + tb_MSG.Text + Environment.NewLine, True)
-        '    'MsgBox("Saved.")
-        'End If
+        Log("Info")
     End Sub
 
     Private Sub btn_Error_Click(sender As Object, e As RoutedEventArgs) Handles btn_Error.Click
-        'If tb_MSG.Text = "" Or tb_Path.Text = "" Then
-        '    MsgBox("Enter All Values.")
-        'Else
-        '    My.Computer.FileSystem.WriteAllText(tb_Path.Text, "[" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "]." + "[Error]:" + tb_MSG.Text + Environment.NewLine, True)
-        '    MsgBox("Saved.")
-        'End If
+        Log("Error")
     End Sub
 
     Private Sub btn_Warning_Click(sender As Object, e As RoutedEventArgs) Handles btn_Warning.Click
-        'If tb_MSG.Text = "" Or tb_Path.Text = "" Then
-        '    MsgBox("Enter All Values.")
-        'Else
-        '    My.Computer.FileSystem.WriteAllText(tb_Path.Text, "[" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "]." + "[Warning]:" + tb_MSG.Text + Environment.NewLine, True)
-        '    MsgBox("Saved.")
-        'End If
+        Log("Warning")
     End Sub
 
 
+    Private Sub Log(LogType As String)
+        If tb_MSG.Text = "" Or tb_Path.Text = "" Then
+            MsgBox("Enter All Values.")
+        Else
+            Dim LogMsg As String = String.Concat("[" , DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") , "]." , "[" + LogType + "]:" , tb_MSG.Text , Environment.NewLine)
+            My.Computer.FileSystem.WriteAllText(tb_Path.Text, LogMsg, True)
+            MsgBox("Saved.")
+        End If
+    End Sub
 End Class

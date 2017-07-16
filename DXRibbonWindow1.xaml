@@ -8,32 +8,32 @@
     Title="Log Viewer" Height="397.545" Width="875.893"
     WindowStartupLocation="CenterScreen">
 
-    <DockPanel >
+    <Grid>
         <dxb:BarManager>
-            <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010" >
-                <dxr:RibbonDefaultPageCategory>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010" ToolbarShowMode="ShowAbove" MinimizationButtonVisibility="Auto">
+                    <dxr:RibbonDefaultPageCategory>
                         <dxr:RibbonPage Caption="Home">
                             <dxr:RibbonPageGroup Caption="Refresh">
                                 <dxb:BarButtonItem Content="Refresh" Glyph="{dx:DXImage Image=Refresh2_32x32.png}" LargeGlyph="{dx:DXImage Image=Refresh2_32x32.png}"/>
                             </dxr:RibbonPageGroup>
                             <dxr:RibbonPageGroup Caption="Logging">
-                                <dxb:BarButtonItem Content="Open Log File" Glyph="{dx:DXImage Image=Open2_16x16.png}" LargeGlyph="{dx:DXImage Image=Open2_32x32.png}" ItemClick="BarButtonItem_ItemClick_2"/>
                                 <dxb:BarButtonItem Content="Start" Glyph="{dx:DXImage Image=Apply_32x32.png}" LargeGlyph="{dx:DXImage Image=Apply_32x32.png}"/>
                                 <dxb:BarButtonItem Content="Done" Glyph="{dx:DXImage Image=Undo_32x32.png}" LargeGlyph="{dx:DXImage Image=Undo_32x32.png}"/>
-                                <dxb:BarButtonItem Content="Info" Glyph="{dx:DXImage Image=Info_32x32.png}" LargeGlyph="{dx:DXImage Image=Info_32x32.png}" ItemClick="BarButtonItem_ItemClick"/>
-                                <dxb:BarButtonItem Content="Warning" Glyph="{dx:DXImage Image=Suggestion_32x32.png}" LargeGlyph="{dx:DXImage Image=Suggestion_32x32.png}" RibbonStyle="Large" ItemClick="BarButtonItem_ItemClick_3"/>
-                                <dxb:BarButtonItem Content="Error" Glyph="{dx:DXImage Image=Cancel_32x32.png}" LargeGlyph="{dx:DXImage Image=Cancel_32x32.png}" ItemClick="BarButtonItem_ItemClick_1"/>
-                        </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="Ribbon Page Group">
-                            <dxb:BarButtonItem Content="Clear All" Glyph="{dx:DXImage Image=Clear_16x16.png}" LargeGlyph="{dx:DXImage Image=Clear_32x32.png}" RibbonStyle="SmallWithText"/>
-                            <dxb:BarButtonItem Content="Delete Selected Item" Glyph="{dx:DXImage Image=Delete_16x16.png}" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}" RibbonStyle="SmallWithText"/>
-                            <dxb:BarButtonItem Content="Expand All" Glyph="{dx:DXImage Image=AutoExpand_16x16.png}" LargeGlyph="{dx:DXImage Image=AutoExpand_32x32.png}" RibbonStyle="SmallWithText"/>
-                            <dxb:BarButtonItem Content="Collapse All" RibbonStyle="SmallWithText" Glyph="{dx:DXImage Image=TreeView_16x16.png}" LargeGlyph="{dx:DXImage Image=TreeView_32x32.png}"/>
-                        </dxr:RibbonPageGroup>
-                    </dxr:RibbonPage>
+                                <dxb:BarButtonItem Content="Info" Glyph="{dx:DXImage Image=Info_32x32.png}" LargeGlyph="{dx:DXImage Image=Info_32x32.png}"/>
+                                <dxb:BarButtonItem Content="Warning" Glyph="{dx:DXImage Image=Suggestion_32x32.png}" LargeGlyph="{dx:DXImage Image=Suggestion_32x32.png}" RibbonStyle="Large"/>
+                                <dxb:BarButtonItem Content="Error" Glyph="{dx:DXImage Image=Cancel_32x32.png}" LargeGlyph="{dx:DXImage Image=Cancel_32x32.png}"/>
+                            </dxr:RibbonPageGroup>
+                        </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-
+                <dxr:RibbonStatusBarControl Grid.Row="2"/>
+            </Grid>
         </dxb:BarManager>
-    </DockPanel>
+    </Grid>
 </dxr:DXRibbonWindow>
