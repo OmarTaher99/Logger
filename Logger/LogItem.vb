@@ -6,9 +6,7 @@ Public Class LogItem
     Private _Msg As String = "Default Value"
     Public Property Msg As String
         Get
-            Dim FileReader As String
-            FileReader = My.Computer.FileSystem.ReadAllText("D:\New folder (2)\SAMPLES\Logger.txt")
-            Return FileReader
+            Return _Msg
         End Get
         Set(value As String)
             _Msg = value

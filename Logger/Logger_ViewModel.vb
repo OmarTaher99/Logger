@@ -5,6 +5,7 @@ Imports Prism.Mvvm
 Public Class Logger_ViewModel
     Inherits BindableBase
 
+#Region "Fields"
 #Region "Msg"
     Private _Msg As String
     Public Property Msg As String
@@ -17,67 +18,64 @@ Public Class Logger_ViewModel
         End Set
     End Property
 #End Region
-
-#Region "Logs"
     Public Property Logs As New ObservableCollection(Of LogItem)
 #End Region
-
 #Region "Commands"
+#Region "Log"
+#Region "LogInfo_CMD"
+    Public Property LogInfo_CMD As DelegateCommand = New DelegateCommand(AddressOf LogInfo)
+    Private Sub LogInfo()
+        Log("INFO","Msg # INFO INFO")
+    End Sub
+#End Region
+#Region "LogWarning_CMD"
+    Public Property LogWarning_CMD As DelegateCommand = New DelegateCommand(AddressOf LogWarning)
+    Private Sub LogWarning()
+        Log("WARN","Msg # WAWAWAWAWAWAW")
+    End Sub
+#End Region
+#Region "LogError_CMD"
+    Public Property LogError_CMD As DelegateCommand = New DelegateCommand(AddressOf LogError)
+    Private Sub LogError()
+        Log("ERROR","Msg # asdasasasasdasdasdsadsaddassda")
+    End Sub
+#End Region
+
+#Region "Log_Method"
+    Private Sub Log(LogType As String, Msg As String)
+        Dim LogMsg As String = String.Concat(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), "|", LogType, "|", Msg, Environment.NewLine)
+        My.Computer.FileSystem.WriteAllText(Logging_Service.LogFilePath, LogMsg, True)
+    End Sub
+#End Region
+#End Region
 #Region "AddLogItem_CMD"
     Public Property AddLogItem_CMD As DelegateCommand = New DelegateCommand(AddressOf AddLogItem)
     Private Sub AddLogItem()
-        For Each Line As String In System.IO.File.ReadAllLines("D:\New folder (2)\SAMPLES\Logger.txt")
+        For Each Line As String In System.IO.File.ReadAllLines(Logging_Service.LogFilePath)
             Logs.Add(New LogItem)
             'DataGridView1.Rows.Add(line.Split(","))
         Next
 
     End Sub
 #End Region
+
+
 #Region "Refresh_CMD"
     Public Property Refresh_CMD As DelegateCommand = New DelegateCommand(AddressOf Refresh)
     Private Sub Refresh()
+        Dim newLogs = Logging_Service.TranslateLog
 
-        Dim FileReader As String
-        FileReader = My.Computer.FileSystem.ReadAllText("D:\New folder (2)\SAMPLES\Logger.txt")
-        MsgBox(FileReader)
+        For Each l In newLogs
+            Logs.Add(l)
+        Next
 
-        'For Each line As String In System.IO.File.ReadAllLines("d:\temp\testdata.txt")
-        '    DataGridView1.Rows.Add(line.Split(","))
-        'Next
-    End Sub
-#End Region
-#Region "LogInfo_CMD"
-    Public Property LogInfo_CMD As DelegateCommand = New DelegateCommand(AddressOf LogInfo)
-    Private Sub LogInfo()
-        Log("Log Info Text")
-    End Sub
-#End Region
-#Region "LogWarning_CMD"
-    Public Property LogWarning_CMD As DelegateCommand = New DelegateCommand(AddressOf LogWarning)
-    Private Sub LogWarning()
-        Log("Log Warning Text")
-    End Sub
-#End Region
-#Region "LogError_CMD"
-    Public Property LogError_CMD As DelegateCommand = New DelegateCommand(AddressOf LogError)
-    Private Sub LogError()
-        Log("Log Error Text")
     End Sub
 #End Region
 #Region "OpenLogFile_CMD"
     Public Property OpenLogFile_CMD As DelegateCommand = New DelegateCommand(AddressOf OpenLogFile)
     Private Sub OpenLogFile()
-        Process.Start("D:\New folder (2)\SAMPLES\Logger.txt")
+        Process.Start(Logging_Service.LogFilePath)
     End Sub
 #End Region
 #End Region
-
-
-#Region "Log_Method"
-    Private Sub Log(LogType As String)
-        Dim LogMsg As String = String.Concat(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), ".", LogType, Environment.NewLine)
-        My.Computer.FileSystem.WriteAllText("D:\New folder (2)\SAMPLES\Logger.txt", LogMsg, True)
-    End Sub
-#End Region
-
 End Class
