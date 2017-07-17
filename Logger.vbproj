@@ -121,6 +121,7 @@
       <DependentUpon>Logger_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logger\Logger_ViewModel.vb" />
+    <Compile Include="Logger\LogItem.vb" />
     <Compile Include="MVVM Test\LoggerTest_View.xaml.vb">
       <DependentUpon>LoggerTest_View.xaml</DependentUpon>
     </Compile>

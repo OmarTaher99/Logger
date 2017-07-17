@@ -20,7 +20,7 @@
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Caption="Home">
                     <dxr:RibbonPageGroup Caption="Refresh">
-                        <dxb:BarButtonItem Content="Refresh" Command="{Binding LogRefresh_CMD}" Glyph="{dx:DXImage Image=Refresh2_32x32.png}" LargeGlyph="{dx:DXImage Image=Refresh2_32x32.png}"/>
+                        <dxb:BarButtonItem Content="Refresh" Command="{Binding Refresh_CMD}" Glyph="{dx:DXImage Image=Refresh2_32x32.png}" LargeGlyph="{dx:DXImage Image=Refresh2_32x32.png}"/>
                         <dxb:BarButtonItem Content="Open Log File" Command="{Binding OpenLogFile_CMD}" Glyph="{dx:DXImage Image=Open2_16x16.png}" LargeGlyph="{dx:DXImage Image=Open2_32x32.png}"/>
                     </dxr:RibbonPageGroup>
                     <dxr:RibbonPageGroup Caption="Logging">
@@ -30,13 +30,18 @@
                         <dxb:BarButtonItem Content="Warning" Command="{Binding LogWarning_CMD}"  Glyph="{dx:DXImage Image=Suggestion_32x32.png}" LargeGlyph="{dx:DXImage Image=Suggestion_32x32.png}"/>
                         <dxb:BarButtonItem Content="Error" Command="{Binding LogError_CMD}" Glyph="{dx:DXImage Image=Cancel_32x32.png}" LargeGlyph="{dx:DXImage Image=Cancel_32x32.png}"/>
                     </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Ribbon Page Group">
+                        <dxb:BarButtonItem Content="Add Log Item" Command="{Binding AddLogItem_CMD}" Glyph="{dx:DXImage Image=Add_32x32.png}" LargeGlyph="{dx:DXImage Image=Add_32x32.png}"/>
+                    </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
 
-        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
+        <dxg:GridControl ItemsSource="{Binding Logs}"  EnableSmartColumnsGeneration="True" >
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Msg" Binding="{Binding Msg}" SortOrder="Ascending" SortIndex="0"/>
+                <dxg:GridColumn FieldName="Msg" Header="Msg"/>
+                <dxg:GridColumn FieldName="Type" Header="Type"/>
+                <dxg:GridColumn FieldName="Time" Header="Time"/>
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>

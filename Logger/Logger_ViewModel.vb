@@ -1,4 +1,5 @@
-﻿Imports Prism.Commands
+﻿Imports System.Collections.ObjectModel
+Imports Prism.Commands
 Imports Prism.Mvvm
 
 Public Class Logger_ViewModel
@@ -17,11 +18,24 @@ Public Class Logger_ViewModel
     End Property
 #End Region
 
+#Region "Logs"
+    Public Property Logs As New ObservableCollection(Of LogItem)
+#End Region
 
+#Region "Commands"
+#Region "AddLogItem_CMD"
+    Public Property AddLogItem_CMD As DelegateCommand = New DelegateCommand(AddressOf AddLogItem)
+    Private Sub AddLogItem()
+        For Each Line As String In System.IO.File.ReadAllLines("D:\New folder (2)\SAMPLES\Logger.txt")
+            Logs.Add(New LogItem)
+            'DataGridView1.Rows.Add(line.Split(","))
+        Next
 
-#Region "LogRefresh_CMD"
-    Public Property LogRefresh_CMD As DelegateCommand = New DelegateCommand(AddressOf LogRefresh)
-    Private Sub LogRefresh()
+    End Sub
+#End Region
+#Region "Refresh_CMD"
+    Public Property Refresh_CMD As DelegateCommand = New DelegateCommand(AddressOf Refresh)
+    Private Sub Refresh()
 
         Dim FileReader As String
         FileReader = My.Computer.FileSystem.ReadAllText("D:\New folder (2)\SAMPLES\Logger.txt")
@@ -56,10 +70,12 @@ Public Class Logger_ViewModel
         Process.Start("D:\New folder (2)\SAMPLES\Logger.txt")
     End Sub
 #End Region
+#End Region
+
 
 #Region "Log_Method"
     Private Sub Log(LogType As String)
-        Dim LogMsg As String = String.Concat("[", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), "].", "[" + LogType + "]", Environment.NewLine)
+        Dim LogMsg As String = String.Concat(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), ".", LogType, Environment.NewLine)
         My.Computer.FileSystem.WriteAllText("D:\New folder (2)\SAMPLES\Logger.txt", LogMsg, True)
     End Sub
 #End Region
