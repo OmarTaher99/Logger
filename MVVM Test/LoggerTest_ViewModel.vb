@@ -4,7 +4,6 @@ Imports Prism.Mvvm
 Public Class LoggerTest_ViewModel
     Inherits BindableBase
 
-
 #Region "Msg"
     Private _Msg As String = "Default Value"
     Public Property Msg As String

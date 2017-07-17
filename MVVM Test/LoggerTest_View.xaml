@@ -15,7 +15,7 @@
                  Margin="49,22,0,0" 
                  Text="{Binding Msg}"/>
         
-        <Button  Content="Info" Command="{Binding LogInfo_CMD}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="49,62,0,0" Height="36"/>
+        <Button  Content="Info"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="49,62,0,0" Height="36"/>
         <Button  Content="Error" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="179,62,0,0" Height="36"/>
         <Button  Content="Warning" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="310,62,0,0" Height="36"/>
         
